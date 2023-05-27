@@ -1,14 +1,21 @@
-#!/bin/bash
+#! /bin/bash
 
-cd ./../raw
+clear 
 
-mkdir categorias
+BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )
+CONFIG=${BASEDIR}/../config/config.sh
+source ${CONFIG}
 
-cd categorias
+echo "Iniciando a criacao em ${DATE}"
 
-# curl -O 'https://github.com/caiuafranca/dados_curso/blob/main/categoria.csv'
-wget -O 'https://github.com/caiuafranca/dados_curso/blob/main/'
 
-# baixar todos os arquivos
-# pode ser feito com python
-# julio neves, shell script
+for table in "${TABLES[@]}"
+do
+    echo "TABELA: $table"
+    cd ./../raw/
+    mkdir $table
+    cd $table
+    curl -O https://raw.githubusercontent.com/caiuafranca/dados_curso/main/${table}.csv
+    cd ..
+
+done
