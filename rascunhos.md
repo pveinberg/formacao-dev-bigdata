@@ -17,12 +17,13 @@ CREATE EXTERNAL TABLE IF NOT EXISTS aula_hive.categoria (
     ds_categoria string,
     perc_parceiro string
 )
-COMMENT "Tabela de Categoria"
+COMMENT 'Tabela de Categoria'
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY "|"
+FIELDS TERMINATED BY '|'
 STORED AS TEXTFILE
-location  '/datalake/raw/categoria'
+location  '/datalake/raw/categoria/'
 TBLPROPERTIES ("skip.header.line.count"="1");
+
 
 ### Criacao de tabela particionada
 
@@ -36,3 +37,6 @@ ROW FORMAT SERDE 'org.apache.hadoop.hive.ql.io.orc.OrcSerde'
 STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat'
 TBLPROPERTIES ('orc.compress'='SNAPPY');
+
+
+beeline -u jdbc:hive2://localhost:10000 -f  /input/curso_minsait/hql/create_table_categoria.hql
