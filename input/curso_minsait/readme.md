@@ -27,3 +27,5 @@ Roteiro:
 6. construir a tabela fato
 7. configurar os agregados (fatos com granularidade maios)
 8. testar e otimizar
+
+https://cwiki.apache.org/confluence/collector/pages.action?key=Hive
