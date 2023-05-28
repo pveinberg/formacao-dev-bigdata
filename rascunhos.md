@@ -40,3 +40,5 @@ TBLPROPERTIES ('orc.compress'='SNAPPY');
 
 
 beeline -u jdbc:hive2://localhost:10000 -f  /input/curso_minsait/hql/create_table_categoria.hql
+
+
