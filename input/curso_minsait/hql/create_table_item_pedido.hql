@@ -3,7 +3,7 @@
 DROP TABLE IF EXISTS aula_hive.item_pedido;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS aula_hive.item_pedido (
-    id_pedido stirng,
+    id_pedido string,
     id_produto string,
     quantidade string,
     vr_unitario string
@@ -22,7 +22,7 @@ SELECT * FROM aula_hive.item_pedido LIMIT 10;
 DROP TABLE IF EXISTS aula_hive.tbl_item_pedido;
 
 CREATE TABLE IF NOT EXISTS aula_hive.tbl_item_pedido (
-    id_pedido stirng,
+    id_pedido string,
     id_produto string,
     quantidade string,
     vr_unitario string
