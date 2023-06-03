@@ -29,3 +29,6 @@ Roteiro:
 8. testar e otimizar
 
 https://cwiki.apache.org/confluence/collector/pages.action?key=Hive
+
+## Query SQOOP
+sqoop eval --connect jdbc:mysql://database/employees --username=root --password=secret --query "SELECT * FROM employees limit 15"

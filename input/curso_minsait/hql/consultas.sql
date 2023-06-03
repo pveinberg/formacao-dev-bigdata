@@ -182,9 +182,11 @@ hive --version;
 
 show tables
 
-SELECT * from aula_hive.pedido p 
+SELECT p2.id_produto as chaveproduto 
+	from aula_hive.pedido p 
 	join aula_hive.item_pedido ip on ip.id_pedido = p.id_pedido 
-	limit 5
+	join aula_hive.produto p2  on p2.id_produto = ip.id_produto 
+	limit 2
 	
 
 
