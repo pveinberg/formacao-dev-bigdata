@@ -177,7 +177,15 @@ ALTER TABLE dimensional.fato_pedidos ADD CONSTRAINT chave_cliente_fk FOREIGN KEY
 ALTER TABLE dimensional.fato_pedidos ADD CONSTRAINT chave_localizacao_fk FOREIGN KEY(chave_localizacao) REFERENCES dimensional.localizacao;
 
 
-hive --version
+hive --version; 
+
+
+show tables
+
+SELECT * from aula_hive.pedido p 
+	join aula_hive.item_pedido ip on ip.id_pedido = p.id_pedido 
+	limit 5
+	
 
 
 
