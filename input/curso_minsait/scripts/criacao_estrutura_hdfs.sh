@@ -14,7 +14,7 @@ echo "Iniciando criação da estrutura no HDFS em ${DATE} ..."
 
 echo "Criando base no datalake ..."
 
-echo "hadoop fs -mkdir ${HDFS_BASE_DIR}"
+hadoop fs -mkdir ${HDFS_BASE_DIR}
 
 
 echo "Criação de subpastas dentro do datalake ..."
@@ -23,3 +23,5 @@ do
     echo "Criando ${table} ..."
     hadoop fs -mkdir ${HDFS_BASE_DIR}/$table
 done
+
+hadoop fs -ls ${HDFS_BASE_DIR}

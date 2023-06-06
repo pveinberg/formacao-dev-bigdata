@@ -16,7 +16,8 @@ echo "Iniciando a criacao em ${DATE}"
 # Para cada tabela deverá ser criado um diretório e cada arquivo será descargado da fonte para este diretório
 for table in "${TABLES[@]}"
 do
-    echo "TABELA: $table"
+    echo "Downloading ${table}.csv"
+    
     # Acessando o diretório raw (base)
     cd ./../raw/
 

@@ -10,11 +10,16 @@ echo "Iniciando a criacao em ${DATE}"
 
 for table in "${TABLES[@]}"
 do
-    echo "TABELA: $table"
-    cd "./../raw/$table"
+    echo "Copiando ${table}.csv"
+    cd "./../raw/$table/"
     
-    hdfs dfs -mkdir /datalake/raw/$table
-    hdfs dfs -chmod 777 /datalake/raw/$table
-    hdfs dfs -copyFromLocal $table.csv /datalake/raw/$table
+    pwd
+    
+    hdfs dfs -chmod 777 ${HDFS_BASE_DIR}/${table}
+    hdfs dfs -copyFromLocal $table.csv ${HDFS_BASE_DIR}/${table}
+    
     cd ..
+
 done
+
+echo "Fim do processo ..."
