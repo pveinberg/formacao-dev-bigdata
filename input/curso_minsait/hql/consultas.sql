@@ -188,6 +188,32 @@ SELECT p2.id_produto as chaveproduto
 	join aula_hive.produto p2  on p2.id_produto = ip.id_produto 
 	limit 2
 	
+	
+	
+describe aula_hive.pedido;
 
 
+# fato pedidos
 
+SELECT p.id_pedido as chavepedido, 
+	ip.id_produto as chaveproduto, p.id_cliente as chavecliente, 
+	ip.quantidade, p.vr_total_pago as vr_total
+	from pedido p
+	join item_pedido ip on ip.id_pedido = p.id_pedido 
+--	join produto p2 on p2.id_
+	limit 10
+	
+	
+	
+select p.id_produto as chaveproduto,
+    c.id_cliente as chavecliente,
+    ip.id_pedido,
+    ip.quantidade 
+    from pedido pd
+    join produto pr on pr.id_ 
+    join item_pedido ip on ip.id_produto = p.id_produto
+    join cliente c on c.id_cliente = ip.id_cliente
+    limit 10
+"""
+
+spark.sql(query).show()
