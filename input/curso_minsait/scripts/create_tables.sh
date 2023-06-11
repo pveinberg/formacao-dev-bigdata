@@ -2,6 +2,10 @@
 
 clear 
 
+
+-- tabelas externas, gerenciadas e particionadas
+ 
+
 BASEDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )
 CONFIG=${BASEDIR}/../config/config.sh
 source ${CONFIG}
