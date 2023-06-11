@@ -1,8 +1,11 @@
 -- tabela cidade hive
 
-DROP TABLE IF EXISTS aula_hive.cidade;
+CREATE DATABASE IF NOT EXISTS ${TARGET_STAGE_DATABASE}; 
+CREATE DATABASE IF NOT EXISTS ${TARGET_PRD_DATABASE};
 
-CREATE EXTERNAL TABLE IF NOT EXISTS aula_hive.cidade (
+DROP TABLE ${TARGET_STAGE_DATABASE}.cidade;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS ${TARGET_STAGE_DATABASE}.cidade (
     id_cidade string,
     ds_cidade string,
     id_estado string
@@ -11,16 +14,16 @@ COMMENT "Tabela de cidade"
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY "|"
 STORED AS TEXTFILE
-location  '/datalake/raw/cidade/'
+location  "${HDFS_DIR}"
 TBLPROPERTIES ("skip.header.line.count"="1");
 
-SELECT * FROM aula_hive.cidade LIMIT 10;
+SELECT * FROM ${TARGET_STAGE_DATABASE}.cidade LIMIT 10;
 
 -- Tabela cidade particionada
 
-DROP TABLE IF EXISTS aula_hive.tbl_cidade;
+DROP TABLE ${TARGET_PRD_DATABASE}.cidade;
 
-CREATE TABLE IF NOT EXISTS aula_hive.tbl_cidade (
+CREATE TABLE IF NOT EXISTS ${TARGET_PRD_DATABASE}.cidade (
     id_cidade string,
     ds_cidade string,
     id_estado string
@@ -31,6 +34,17 @@ STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat'
 TBLPROPERTIES ('orc.compress'='SNAPPY');
 
-SELECT * FROM aula_hive.tbl_cidade LIMIT 10;
+SET hive.exec.dynamic.partition=true;
+SET hive.exec.dynamic.partition.mode=nonstrict;
 
--- beeline -u jdbc:hive2://localhost:10000 -f  /input/curso_minsait/hql/create_table_cidade.hql
+INSERT OVERWRITE TABLE 
+    ${TARGET_PRD_DATABASE}.cidade
+PARTITION(DT_FOTO)
+SELECT
+    id_cidade string,
+    ds_cidade string,
+    id_estado string,
+    '${PARTICAO}' as DT_FOTO
+FROM ${TARGET_STAGE_DATABASE}.cidade;
+
+SELECT * FROM ${TARGET_PRD_DATABASE}.cidade LIMIT 10;
