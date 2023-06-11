@@ -180,15 +180,7 @@ ALTER TABLE dimensional.fato_pedidos ADD CONSTRAINT chave_localizacao_fk FOREIGN
 hive --version; 
 
 
-show tables
-
-SELECT p2.id_produto as chaveproduto 
-	from aula_hive.pedido p 
-	join aula_hive.item_pedido ip on ip.id_pedido = p.id_pedido 
-	join aula_hive.produto p2  on p2.id_produto = ip.id_produto 
-	limit 2
-	
-	
+show tables;
 	
 describe aula_hive.pedido;
 
