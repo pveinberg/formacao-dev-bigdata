@@ -1,3 +1,17 @@
+# Roadmap
+
+## Donwload de source
+
+Baixar arquivos (curl) do repositório (*) 
+
+(*) O arquivo de pedidos já deve estar no ambiente pq é muito grande
+
+## Mover o conteúdo 
+Mover o conteúdo que foi baixado para *hdfs*
+
+
+--------------
+
 ### Criando pastas dentro do hdfs
 
 ```
@@ -42,3 +56,38 @@ TBLPROPERTIES ('orc.compress'='SNAPPY');
 beeline -u jdbc:hive2://localhost:10000 -f  /input/curso_minsait/hql/create_table_categoria.hql
 
 
+df_categoria = spark.sql("select * from aula_hive.categoria")
+df_cidade = spark.sql("select * from aula_hive.cidade")
+df_cliente = spark.sql("select * from aula_hive.cliente")
+df_estado = spark.sql("select * from aula_hive.estado")
+df_filial = spark.sql("select * from aula_hive.filial")
+df_tem_pedido = spark.sql("select * from aula_hive.tem_pedido")
+df_parceiro = spark.sql("select * from aula_hive.parceiro")
+df_pedido = spark.sql("select * from aula_hive.pedido")
+df_produto = spark.sql("select * from aula_hive.produto")
+df_subcategoria = spark.sql("select * from aula_hive.subcategoria")
+
+
+pedidos_full['dt_ano'] = pedidos_full['dt_pedido'].dt.year
+pedidos_full['dt_mes'] = pedidos_full['dt_pedido'].dt.month
+pedidos_full['dt_dia_semana'] = pedidos_full['dt_pedido'].dt.dayofweek
+pedidos_full['dt_trimestre'] = pedidos_full['dt_pedido'].dt.quarter
+pedidos_full['dt_trimestre'] = pedidos_full['dt_pedido'].dt.quarter
+pedidos_full['dt_semana'] = pedidos_full['dt_pedido'].dt.week
+pedidos_full
+
+
+docker exec 5f060f3b7774 hdfs dfs -ls /
+
+
+
+categoria ok
+subcategoria ok
+filial ok
+cidade ok
+estado ok
+cliente ok
+parceiro ok
+produto ok
+item_pedido ok
+pedido ok
