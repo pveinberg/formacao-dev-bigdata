@@ -1,8 +1,11 @@
 -- tabela produto hive
 
-DROP TABLE IF EXISTS aula_hive.produto;
+CREATE DATABASE IF NOT EXISTS ${TARGET_STAGE_DATABASE}; 
+CREATE DATABASE IF NOT EXISTS ${TARGET_PRD_DATABASE};
 
-CREATE EXTERNAL TABLE IF NOT EXISTS aula_hive.produto (
+DROP TABLE ${TARGET_STAGE_DATABASE}.produto;
+
+CREATE EXTERNAL TABLE IF NOT EXISTS ${TARGET_STAGE_DATABASE}.produto (
     id_produto string, 
     ds_produto string, 
     id_subcategoria string
@@ -11,16 +14,16 @@ COMMENT "Tabela de produto"
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY "|"
 STORED AS TEXTFILE
-location  '/datalake/raw/produto/'
+location  "${HDFS_DIR}"
 TBLPROPERTIES ("skip.header.line.count"="1");
 
-SELECT * FROM aula_hive.produto LIMIT 10;
+SELECT * FROM ${TARGET_STAGE_DATABASE}.produto LIMIT 10;
 
 -- Tabela produto particionada
 
-DROP TABLE IF EXISTS aula_hive.tbl_produto;
+DROP TABLE ${TARGET_PRD_DATABASE}.produto;
 
-CREATE TABLE IF NOT EXISTS aula_hive.tbl_produto (
+CREATE TABLE IF NOT EXISTS ${TARGET_PRD_DATABASE}.produto (
     id_produto string, 
     ds_produto string, 
     id_subcategoria string
@@ -31,6 +34,17 @@ STORED AS INPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcInputFormat'
 OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.orc.OrcOutputFormat'
 TBLPROPERTIES ('orc.compress'='SNAPPY');
 
-SELECT * FROM aula_hive.tbl_produto LIMIT 10;
+SET hive.exec.dynamic.partition=true;
+SET hive.exec.dynamic.partition.mode=nonstrict;
 
--- beeline -u jdbc:hive2://localhost:10000 -f  /input/curso_minsait/hql/create_table_produto.hql
+INSERT OVERWRITE TABLE 
+    ${TARGET_PRD_DATABASE}.produto
+PARTITION(DT_FOTO)
+SELECT
+    id_produto string, 
+    ds_produto string, 
+    id_subcategoria string,
+    '${PARTICAO}' as DT_FOTO
+FROM ${TARGET_STAGE_DATABASE}.produto;
+
+SELECT * FROM ${TARGET_PRD_DATABASE}.produto LIMIT 10;
