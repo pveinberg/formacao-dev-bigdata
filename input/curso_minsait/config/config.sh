@@ -1,13 +1,32 @@
 #! /bin/bash
-DATE="$(date --date="-0 day" "+%Y%m%d")"
-TABLES=("categoria" "pedido" "cidade" "cliente" "estado" "filial" "item_pedido" "parceiro" "produto" "subcategoria")
 
-TARGET_DATABASE="aula_hive"
-SERVER="prod"
-HDFS_BASE_DIR="/datalake/raw2"
+# Data atual
+DATE="$(date --date="-0 day" "+%Y%m%d")"
+
+# Tabelas/arquivos que fazem parte do domínio do projeto
+# (*) a entidade 'pedido' tem um tratamento diferenciado, já que não se encontra no repositório
+TABLES=("categoria" "subcategoria" "filial" "cidade" "estado" "cliente" "parceiro" "produto" "item_pedido" "pedido")
+
+# Base de dados
+TARGET_STAGE_DATABASE="stg_magalu_db"
+TARGET_PRD_DATABASE="prd_magalu_db"
+
+# Diretório base do projeto
+BASE_DIR="magalu_project"
+
+# Diretórios de trabalho
+RAW_BASE_DIR="${BASE_DIR}/raw"
+SILVER_BASE_DIR="${BASE_DIR}/silver"
+GOLD_BASE_DIR="${BASE_DIR}/gold"
+
+# namenode ID
+DOCKER_HDFS_ID="5f060f3b7774"
+BASE_NAMENODE_DIR="/input/curso_minsait" 
+
+# hive-server ID
+DOCKER_HIVE_ID="be19fc1b05de"
 
 TARGET_TABLE_EXTERNAL="categoria"
 TARGET_TABLE_GERENCIADA="tbl_categoria"
 
-PARTICAO=DATE
-
+PARTICAO=${DATE}
