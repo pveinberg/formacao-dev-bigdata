@@ -81,13 +81,77 @@ docker exec 5f060f3b7774 hdfs dfs -ls /
 
 
 
-categoria ok
-subcategoria ok
-filial ok
-cidade ok
-estado ok
-cliente ok
-parceiro ok
-produto ok
-item_pedido ok
-pedido ok
+# categoria
+# subcategoria
+# filial
+# cidade
+# estado
+# cliente
+# parceiro
+# produto
+# item_pedido
+# pedido
+
+
+{
+"categoria": {
+        "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"subcategoria": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"filial": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"cidade": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"estado": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"cliente": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"parceiro": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"produto": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"item_pedido": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+},
+"pedido": {
+    "fields": {
+        "float": [], 
+        "datetime64[ns]": ["dt_foto"] 
+    }
+}
+}
