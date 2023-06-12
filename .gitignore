@@ -1,1 +1,11 @@
 bigdata_docker/
+input/curso_minsait/magalu_project/raw/categoria/categoria.csv
+input/curso_minsait/magalu_project/raw/cidade/cidade.csv
+input/curso_minsait/magalu_project/raw/cliente/cliente.csv
+input/curso_minsait/magalu_project/raw/estado/estado.csv
+input/curso_minsait/magalu_project/raw/filial/filial.csv
+input/curso_minsait/magalu_project/raw/item_pedido/item_pedido.csv
+input/curso_minsait/magalu_project/raw/parceiro/parceiro.csv
+input/curso_minsait/magalu_project/raw/pedido/pedido.csv
+input/curso_minsait/magalu_project/raw/produto/produto.csv
+input/curso_minsait/magalu_project/raw/subcategoria/subcategoria.csv
