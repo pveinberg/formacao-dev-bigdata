@@ -20,11 +20,11 @@ SILVER_BASE_DIR="${BASE_DIR}/silver"
 GOLD_BASE_DIR="${BASE_DIR}/gold"
 
 # namenode ID
-DOCKER_HDFS_ID="5f060f3b7774"
+DOCKER_HDFS_ID="namenode"
 BASE_NAMENODE_DIR="/input/curso_minsait" 
 
 # hive-server ID
-DOCKER_HIVE_ID="be19fc1b05de"
+DOCKER_HIVE_ID="hive-server"
 
 TARGET_TABLE_EXTERNAL="categoria"
 TARGET_TABLE_GERENCIADA="tbl_categoria"
