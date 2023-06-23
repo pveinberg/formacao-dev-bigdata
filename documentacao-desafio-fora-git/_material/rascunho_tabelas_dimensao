@@ -1,0 +1,66 @@
+
+
+>> FT_VENDAS << 
+DW_VENDAS (PK)
+DW_CLIENTE (FK)
+DW_TEMPO (FK)
+DW_LOCALIDADE (FK)
+actual_delivery_date
+datekey
+discount_amount
+invoice_number
+item_class
+item_number
+item
+line_number
+list_price
+order_number
+promised_delivery_date
+sales_amount
+sales_amount_based_on_list_price
+sales_cost_amount
+sales_margin_amount
+sales_price
+sales_quantity
+sales_rep
+u_m
+
+
+
+>> DIM_TEMPO <<
+DW_TEMPO (PK)
+invoice_date >> full date
+year
+month
+day 
+weekday
+weekyear
+quarter
+
+>> DIM_CLIENTE << 
+DW_CLIENTE (PK)
+customerkey
+customer
+line_of_business
+phone
+business_family
+business_unit
+customer_type
+division >> division name from division
+region name, by region_code
+regional_sales_mgr
+search_type
+dt_foto
+
+>> DIM_LOCALIDADE << 
+DW_LOCALIDADE (PF)
+address_number
+city
+country
+customer_address_1
+customer_address_2
+customer_address_3
+customer_address_4
+state
+zip_code
+dt_foto
